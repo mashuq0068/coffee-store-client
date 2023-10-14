@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Home from './components/Home';
 import AddCoffee from './components/AddCoffee';
+import Details from './components/Details';
+import Update from './components/Update';
 
 
 const router = createBrowserRouter([
@@ -18,6 +20,16 @@ const router = createBrowserRouter([
   {
     path:'/addCoffee',
     element:<AddCoffee></AddCoffee>
+  },
+  {
+    path:"details/:id",
+    element:<Details></Details>,
+    loader : ({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
+  },
+  {
+    path:"update/:id",
+    element:<Update></Update>,
+    loader:({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
   }
 ]);
 
